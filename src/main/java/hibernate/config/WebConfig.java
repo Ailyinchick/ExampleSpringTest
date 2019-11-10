@@ -1,8 +1,8 @@
 package hibernate.config;
 
-import hibernate.dao.DaoPlanet;
-import hibernate.model.Planet;
-import hibernate.service.ServiceUser;
+import hibernate.dao.DaoUser;
+import hibernate.model.User;
+import hibernate.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -24,18 +24,31 @@ public class WebConfig  {
         return resolver;
     }
 
+/*
     @Bean
     public ServiceUser getServiceUser(){
         return new ServiceUser(getDao());
     }
+*/
 
     @Bean
+    public UserService getUserService(){
+        return new UserService();
+    }
+
+/*    @Bean
     public DaoPlanet getDao(){
         return new DaoPlanet();
-    }
+    }*/
 
     @Bean
+    public DaoUser getDaoUser() { return new DaoUser(); }
+
+    @Bean
+    public User user() { return new User(); }
+
+/*    @Bean
     public Planet getPlanet(){
         return new Planet();
-    }
+    }*/
 }

@@ -1,9 +1,9 @@
 package hibernate.model;
+
 import hibernate.config.DataConfig;
 import hibernate.config.WebConfig;
-import hibernate.dao.DaoPlanet;
-import hibernate.service.ServiceUser;
 
+import hibernate.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
@@ -22,12 +22,26 @@ public class PlanetTest extends AbstractTestNGSpringContextTests {
 
 
     @Autowired
-    ServiceUser serviceUser;
+    UserService userService;
 
     @Test
     public void findIdUser() {
-        Planet planet = new Planet();
-        planet.setName("vladimir");
-        //serviceUser.saves(planet);
+        System.out.println(userService.findById("3"));
     }
+
+    @Test
+    public void findAll() {
+        System.out.println(userService.displayAll());
+    }
+
+    @Test
+    public void findRichest() {
+        System.out.println(userService.showRichest());
+    }
+
+    @Test
+    public void bankSumm() {
+        System.out.println(userService.bankSumm());
+    }
+
 }
