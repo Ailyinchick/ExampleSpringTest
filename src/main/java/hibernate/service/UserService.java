@@ -33,7 +33,7 @@ public class UserService {
         String output = "";
         List<User> varList = daoUser.findAll();
         for (int i = 0; i < varList.size(); i++) {
-            output += varList.get(i).toString() + "\n";
+            output += varList.get(i).toString() + "\n <br>";
         }
         return output;
     }
