@@ -20,7 +20,7 @@ public class User {
 
     @Override
     public String toString() {
-        return this.id + " " + this.name + " " + this.surName + " : " + this.accounts.toString() + " ";
+        return this.id + " " + this.name + " " + this.surName + " : "/* + this.accounts.toString() + " "*/;
     }
 
     public void setId(int id) {

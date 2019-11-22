@@ -4,6 +4,7 @@ package hibernate.model;
 import hibernate.config.DataConfig;
 import hibernate.config.WebConfig;
 import hibernate.controller.DeveloperController;
+import hibernate.service.Some;
 import hibernate.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,6 +27,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+
+import java.sql.*;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.hamcrest.CoreMatchers.any;
@@ -78,40 +81,4 @@ public class ServiceTest {
     }
 
 
-    @Test
-    public void findbyid() throws Exception {
-        for (int i = 1; i < 9; i++) {
-            this.mockMvc.perform(post("/findById").param("id", "" + i)
-                    .accept(MediaType.TEXT_HTML)).andExpect(status().isOk()).andDo(print()).
-                    andExpect(view().name("index")).andExpect(model().
-                    attribute("userById", containsString(userService.findById("" + i))));
-        }
-    }
-
-    @Test
-    public void findAll() throws Exception {
-        mockMvc.perform(get("/findAll").accept(MediaType.TEXT_HTML)).andExpect(status().isOk()).
-                andExpect(view().name("index")).andExpect(model().
-                attribute("allUsers", containsString(userService.displayAll()))
-        );
-    }
-
-    @Test
-    public void bankSum() throws Exception {
-        assertThat(
-                mockMvc.perform(get("/bankSumm").accept(MediaType.TEXT_HTML)).andExpect(status().isOk()).
-                        andExpect(view().name("index")).andExpect(model().
-                        attribute("bankSumm", containsString(userService.bankSumm())))
-        );
-
-    }
-
-    @Test
-    public void findRichest() throws Exception {
-        assertThat(
-                mockMvc.perform(get("/findRichest").accept(MediaType.TEXT_HTML))
-                        .andExpect(status().isOk()).andExpect(view().name("index"))
-                        .andExpect(model().attribute("richestUser", containsString(userService.showRichest())))
-        );
-    }
 }

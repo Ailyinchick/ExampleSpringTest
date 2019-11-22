@@ -1,7 +1,5 @@
 package hibernate.dao;
 
-
-import hibernate.model.Account;
 import hibernate.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,7 +11,7 @@ import java.sql.*;
 import java.util.List;
 
 @Repository
-public class DaoUser  {
+public class DaoUser {
 
     private SessionFactory sessionFactory;
 
@@ -53,6 +51,26 @@ public class DaoUser  {
     public List<User> findAll() {
         List<User> users = (List<User>) sessionFactory.openSession().createQuery("From User").list();
         return users;
+    }
+
+    public User findById(int id) {
+        User user = new User();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbfordv", "root", "123qwe");
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select * from user where id = " + id);
+            while (rs.next()) {
+                user.setId(rs.getInt(1));
+                user.setName(rs.getString(2));
+                user.setSurName(rs.getString(3));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (ClassNotFoundException ex1) {
+            System.out.println(ex1.getMessage());
+        }
+        return user;
     }
 
     public String totalBank() {

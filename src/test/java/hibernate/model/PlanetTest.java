@@ -3,6 +3,8 @@ package hibernate.model;
 import hibernate.config.DataConfig;
 import hibernate.config.WebConfig;
 
+import hibernate.dao.DaoUser;
+import hibernate.service.Some;
 import hibernate.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -20,6 +22,8 @@ import org.testng.annotations.Test;
 @WebAppConfiguration
 public class PlanetTest extends AbstractTestNGSpringContextTests {
 
+    @Autowired
+    DaoUser daoUser;
 
     @Autowired
     UserService userService;
@@ -42,6 +46,11 @@ public class PlanetTest extends AbstractTestNGSpringContextTests {
     @Test
     public void bankSumm() {
         System.out.println(userService.bankSumm());
+    }
+
+    @Test
+    public void sqlTest() {
+        System.out.println(daoUser.findById(3).getName());
     }
 
 }

@@ -2,6 +2,7 @@ package hibernate.config;
 
 import hibernate.dao.DaoUser;
 import hibernate.model.User;
+import hibernate.service.Some;
 import hibernate.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -35,6 +36,7 @@ public class WebConfig  {
     public UserService getUserService(){
         return new UserService();
     }
+
 
 /*    @Bean
     public DaoPlanet getDao(){
